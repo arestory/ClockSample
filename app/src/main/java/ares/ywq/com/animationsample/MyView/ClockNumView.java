@@ -24,6 +24,7 @@ public class ClockNumView extends View{
     private float padding;//边距
     //当前数字,默认显示8
     private int num;
+    private NumPaintUtil numPaintUtil;
 
     public int getNum() {
         return num;
@@ -90,6 +91,7 @@ public class ClockNumView extends View{
         lineWidth = w / 2;
         padding = w / 6;
 
+        numPaintUtil=new NumPaintUtil(lineWidth,numColor);
 
     }
 
@@ -97,79 +99,19 @@ public class ClockNumView extends View{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        numPaintUtil.setCanvas(canvas);
         canvas.save();
-        canvas.translate(centerX, centerY);
 
-        switch (num) {
-            case 0:
-                drawTopLeftLine(canvas);
-                drawTopLine(canvas);
-                drawBottomLine(canvas);
-                drawTopRightLine(canvas);
-                drawBottomLeftLine(canvas);
-                drawBottomRigthLine(canvas);
-                break;
-            case 1:
-                drawTopRightLine(canvas);
-                drawBottomRigthLine(canvas);
-                break;
-            case 2:
-                drawCenterLine(canvas);
-                drawTopLine(canvas);
-                drawBottomLine(canvas);
-                drawTopRightLine(canvas);
-                drawBottomLeftLine(canvas);
-                break;
-            case 3:
-                drawCenterLine(canvas);
-                drawTopLine(canvas);
-                drawBottomLine(canvas);
-                drawTopRightLine(canvas);
-                drawBottomRigthLine(canvas);
-                break;
-            case 4:
-                drawCenterLine(canvas);
-                drawTopLeftLine(canvas);
-                drawTopRightLine(canvas);
-                drawBottomRigthLine(canvas);
-                break;
-            case 5:
-                drawCenterLine(canvas);
-                drawTopLeftLine(canvas);
-                drawTopLine(canvas);
-                drawBottomLine(canvas);
-                drawBottomRigthLine(canvas);
-                break;
-            case 6:
-                drawCenterLine(canvas);
-                drawTopLine(canvas);
-                drawBottomLine(canvas);
-                drawTopLeftLine(canvas);
-                drawBottomLeftLine(canvas);
-                drawBottomRigthLine(canvas);
-                break;
-            case 7:
-                drawTopLine(canvas);
-                drawTopRightLine(canvas);
-                drawBottomRigthLine(canvas);
-                break;
-            case 8:
-                drawCenterLine(canvas);
-                drawTopLeftLine(canvas);
-                drawTopLine(canvas);
-                drawBottomLine(canvas);
-                drawTopRightLine(canvas);
-                drawBottomLeftLine(canvas);
-                drawBottomRigthLine(canvas);
-                break;
-            case 9:
-                drawCenterLine(canvas);
-                drawTopLeftLine(canvas);
-                drawTopLine(canvas);
-                drawBottomLine(canvas);
-                drawTopRightLine(canvas);
-                drawBottomRigthLine(canvas);
-                break;
+
+        //drawNumber(canvas,num);
+        if(num>=10){
+            Paint errorPaint = getPaint(numColor);
+            errorPaint.setTextSize(22);
+            canvas.drawText("液晶数字只支持个位数",0,centerY,errorPaint);
+        }else{
+
+            canvas.translate(centerX, centerY);
+            numPaintUtil.drawNumber(num);
         }
 
 
@@ -179,87 +121,6 @@ public class ClockNumView extends View{
     }
 
 
-
-
-
-
-    /**
-     * 画中间线
-     *
-     * @param canvas
-     */
-    private void drawCenterLine(Canvas canvas) {
-
-        Paint numPaint = getPaint(numColor);
-        canvas.drawLine(-lineWidth / 2, 0, lineWidth / 2, 0, numPaint);
-
-    }
-
-    /**
-     * 画top 线
-     *
-     * @param canvas
-     */
-    private void drawTopLine(Canvas canvas) {
-        Paint numPaint = getPaint(numColor);
-        canvas.drawLine(-lineWidth / 2, -lineWidth - 10, lineWidth / 2, -lineWidth - 10, numPaint);
-
-    }
-
-    /**
-     * 画底部的线
-     *
-     * @param canvas
-     */
-    private void drawBottomLine(Canvas canvas) {
-        Paint numPaint = getPaint(numColor);
-        canvas.drawLine(-lineWidth / 2, lineWidth + 10, lineWidth / 2, lineWidth + 10, numPaint);
-    }
-
-
-    /**
-     * 画左上的线
-     *
-     * @param canvas
-     */
-    private void drawTopLeftLine(Canvas canvas) {
-        Paint numPaint = getPaint(numColor);
-        canvas.drawLine(-lineWidth / 2, -5, -lineWidth / 2, -5 - lineWidth, numPaint);
-    }
-
-    /**
-     * 画右上的线
-     *
-     * @param canvas
-     */
-    private void drawTopRightLine(Canvas canvas) {
-
-        Paint numPaint = getPaint(numColor);
-        canvas.drawLine(lineWidth / 2, -5, lineWidth / 2, -5 - lineWidth, numPaint);
-    }
-
-    /**
-     * 画左下
-     *
-     * @param canvas
-     */
-    private void drawBottomLeftLine(Canvas canvas) {
-
-        Paint numPaint = getPaint(numColor);
-        canvas.drawLine(-lineWidth / 2, 5, -lineWidth / 2, 5 + lineWidth, numPaint);
-    }
-
-
-    /**
-     * 画右下
-     *
-     * @param canvas
-     */
-    private void drawBottomRigthLine(Canvas canvas) {
-        Paint numPaint = getPaint(numColor);
-        canvas.drawLine(lineWidth / 2, 5, lineWidth / 2, 5 + lineWidth, numPaint);
-
-    }
 
 
     /**

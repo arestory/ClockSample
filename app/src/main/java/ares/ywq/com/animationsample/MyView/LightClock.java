@@ -337,6 +337,7 @@ public class LightClock extends View {
         Paint wisePaint = getPaint(wiseColor);
         //指针的宽度
         wisePaint.setStrokeWidth(4f);
+        //获取当前时间的时分秒
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
          int minute = calendar.get(Calendar.MINUTE);
@@ -344,7 +345,7 @@ public class LightClock extends View {
          if (timeChangeListener != null) {
             timeChangeListener.onTimeChange(hour, minute, second);
         }
-
+        //计算各条针应该旋转的角度
         int angleHour = (hour % 12) * 360 / 12;//时针转过的角度
         int angleMinute = minute * 360 / 60;//分针转过的角度
         int angleSecond = second * 360 / 60;//秒针转过的角度
