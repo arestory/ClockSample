@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <declare-styleable name="LoadingView">
+        <attr name="circleColor" format="color"></attr>
+        <attr name="radius" format="integer"></attr>
+    </declare-styleable>
+
+
+
+    <declare-styleable name="WatchView">
+        <attr name="sColor" format="color"></attr>
+        <attr name="mColor" format="color"></attr>
+        <attr name="hColor" format="color"></attr>
+        <attr name="outCircleColor" format="color"></attr>
+        <attr name="inCircleColor" format="color"></attr>
+        <attr name="numColor" format="integer"></attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="LightClock">
+        <attr name="outsideCircleColor" format="color"></attr>
+        <attr name="secondCircleColor" format="color"></attr>
+        <attr name="clockColor" format="color"></attr>
+        <attr name="quarterColor" format="color"></attr>
+        <attr name="minuteColor" format="color"></attr>
+        <attr name="centerCircleColor" format="color"></attr>
+        <attr name="wiseColor" format="color"></attr>
+        <attr name="squareColorOfWise" format="color"></attr>
+        <attr name="circleColorOfWise" format="color"></attr>
+        <attr name="triangleColorOfWise" format="color"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="ClockNumView">
+
+        <attr name="clockNumColor" format="color"></attr>
+        <attr name="num" format="integer"></attr>
+
+    </declare-styleable>
+    <declare-styleable name="NumClock">
+        <attr name="lineColor" format="color"></attr>
+        <attr name="showSecond" format="boolean"></attr>
+        <attr name="pointColor" format="color"></attr>
+
+
+
+    </declare-styleable>
+
+
+</resources>
