@@ -63,8 +63,6 @@ public class NumPaintUtil {
      * @param num 数字
      */
     public void drawNumber(int num){
-
-
         if(canvas==null){
 
             try{

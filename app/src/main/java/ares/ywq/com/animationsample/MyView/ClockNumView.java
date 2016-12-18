@@ -23,7 +23,7 @@ public class ClockNumView extends View{
     private float lineWidth;//线的长度
     private float padding;//边距
     //当前数字,默认显示8
-    private int num;
+    private int num=8;
     private NumPaintUtil numPaintUtil;
 
     public int getNum() {
@@ -32,10 +32,8 @@ public class ClockNumView extends View{
 
     public void setNum(int num) {
         this.num = num;
-        if(num>=10){
-            this.num=0;
-        }
-       // invalidate();
+
+        invalidate();
 
 
     }
@@ -57,12 +55,12 @@ public class ClockNumView extends View{
      * @param attrs
      */
     private void obtainStyledAttrs(AttributeSet attrs) {
-        TypedArray array = null;
+        TypedArray array;
 
         try {
             array = getContext().obtainStyledAttributes(attrs, R.styleable.ClockNumView);
             numColor = array.getColor(R.styleable.ClockNumView_clockNumColor, Color.parseColor("#ffaacc"));
-            num=array.getInteger(R.styleable.ClockNumView_num,0);
+            num=array.getInteger(R.styleable.ClockNumView_num,8);
         } catch (Exception e) {
             numColor = Color.parseColor("#ffaacc");
         }
@@ -77,9 +75,20 @@ public class ClockNumView extends View{
         mRealWidth = getMeasuredWidth() - getPaddingLeft() - getPaddingRight();
         mRealHeight = getMeasuredHeight() - getPaddingTop() - getPaddingBottom();
         //取最小值
-        int width = Math.min(mRealHeight, mRealWidth);
-        //设置长宽比为3:2
-        setMeasuredDimension(width, width * 3 / 2);
+        int miniValue = Math.min(mRealHeight, mRealWidth);
+
+        //如果0-9,设置长宽比为3:2
+        if(num<10){
+            int width=miniValue;
+            int height=width * 3 / 2;
+            setMeasuredDimension(width, height);
+        }
+        if(num>=10&&num<100){
+            int width=miniValue;
+            int height=width * 2;
+            setMeasuredDimension(width, height);
+
+        }
 
     }
 
@@ -88,8 +97,15 @@ public class ClockNumView extends View{
         super.onSizeChanged(w, h, oldw, oldh);
         centerX = w / 2;
         centerY = h / 2;
-        lineWidth = w / 2;
-        padding = w / 6;
+        if(num<10){
+            lineWidth = w / 2;
+            padding = w / 6;
+
+        }
+        if(num>=10&&num<100){
+            lineWidth=w/4;
+            padding = w / 12;
+        }
 
         numPaintUtil=new NumPaintUtil(lineWidth,numColor);
 
@@ -102,14 +118,13 @@ public class ClockNumView extends View{
         numPaintUtil.setCanvas(canvas);
         canvas.save();
 
+        if(num>=10&&num<100){
+            int numOfTen = num/10;
+            int numOfOne =num%10;
+            canvas.translate(padding, centerY);
+            numPaintUtil.drawNumber(num); 
 
-        //drawNumber(canvas,num);
-        if(num>=10){
-            Paint errorPaint = getPaint(numColor);
-            errorPaint.setTextSize(22);
-            canvas.drawText("液晶数字只支持个位数",0,centerY,errorPaint);
         }else{
-
             canvas.translate(centerX, centerY);
             numPaintUtil.drawNumber(num);
         }

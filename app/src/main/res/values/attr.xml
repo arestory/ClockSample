@@ -40,12 +40,12 @@
 
     </declare-styleable>
     <declare-styleable name="NumClock">
+        <!-- 线条颜色 -->
         <attr name="lineColor" format="color"></attr>
+        <!--是否显示秒数 -->
         <attr name="showSecond" format="boolean"></attr>
+        <!-- 中间闪烁点的颜色-->
         <attr name="pointColor" format="color"></attr>
-
-
-
     </declare-styleable>
 
 

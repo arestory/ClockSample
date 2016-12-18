@@ -46,7 +46,7 @@ public class HomeActivity extends BaseActivity {
         initUI(savedInstanceState);
     }
 
-    private String [] mTitles={"荧光","简约","液晶"};
+    private String [] mTitles={"荧光","简约","LED"};
 
     private void initClockFragment(){
         lightClockFragment=LightClockFragment.newInstance("light");

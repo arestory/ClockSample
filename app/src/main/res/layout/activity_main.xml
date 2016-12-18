@@ -9,8 +9,8 @@
 
     <ares.ywq.com.animationsample.MyView.ClockNumView
         android:layout_width="100dp"
-        watch:num="8"
         watch:clockNumColor="@color/colorPrimary"
+        watch:num="8"
         android:layout_height="100dp" />
 
     <ares.ywq.com.animationsample.MyView.WatchView
